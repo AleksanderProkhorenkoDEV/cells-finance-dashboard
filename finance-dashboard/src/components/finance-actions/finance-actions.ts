@@ -11,7 +11,9 @@ export class FinanceActions extends LitElement {
 
     render() {
         return html`
-            <h1>Acciones rápidas</h1>
+            <h1 class="action__title">Acciones rápidas</h1>
+            <action-form></action-form>
+            
         `
     }
 }
