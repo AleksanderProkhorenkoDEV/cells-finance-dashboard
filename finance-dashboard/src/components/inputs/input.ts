@@ -22,7 +22,7 @@ export class Input extends LitElement {
     render() {
         return html` 
             <input 
-                class="structural"
+                class="input input__field"
                 .value=${this.value}
                 .type=${this.type}
                 .required=${this.required ? true : false}
