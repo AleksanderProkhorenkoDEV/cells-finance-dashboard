@@ -1,14 +1,10 @@
 import { ElementController } from '@open-cells/element-controller';
 import { customElement } from 'lit/decorators.js';
-import './finance-movements/finance-movements.ts';
-import './finanace-balance/finance-balance.ts';
-import './finance-actions/finance-actions.ts';
 import { routes } from '../router/routes.js';
 import { startApp } from '@open-cells/core';
 import { styles } from './app-index.css.js';
-import './finance-char/finance-char.ts';
 import { LitElement, html } from 'lit';
-import './cards/card.ts';
+import "./index.ts"
 
 startApp({
   routes,
