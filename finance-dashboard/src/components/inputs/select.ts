@@ -23,17 +23,23 @@ export class Select extends LitElement {
 
     render() {
         return html`
-            <select .value=${this.value}>
-                ${
-                    this.options.map((item) => {
-                        return html`
-                            <option .value=${item.value}>
-                                ${item.label}
-                            </option>
-                        `
-                    })
-                }
-            </select>
+            <div class="select select__wrapper">
+                <select 
+                    .value=${this.value}
+                    class="select select__field"
+                    @change=${this._handleChangeOption}
+                >
+                    ${
+                        this.options.map((item) => {
+                            return html`
+                                <option .value=${item.value}>
+                                    ${item.label}
+                                </option>
+                            `
+                        })
+                    }
+                </select>
+            </div>
         `
     }
 }
