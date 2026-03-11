@@ -40,7 +40,7 @@ export class Button extends LitElement {
         return html`
             <button 
                 type=${this.type} 
-                class=${`${this.variant}`}
+                class=${`button button__field button__field--${this.variant}`}
                 @click=${this._handleClick}
             >
                 <p><slot></slot></p>
