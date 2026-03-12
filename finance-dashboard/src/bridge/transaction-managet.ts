@@ -17,7 +17,7 @@ export const initTransactionsManager = (host: any) => {
         controller.publish('transactions-list-updated', updateList);
     });
 
-    controller.subscribe('delete-all-transaction', () => {
-        localStorage.removeItem('transactions')
+    controller.subscribe('delete-all-transaction', (name: string) => {
+        localStorage.removeItem(name)
     })
 };

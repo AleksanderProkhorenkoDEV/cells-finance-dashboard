@@ -25,7 +25,7 @@ export class ButtonModal extends LitElement {
     _handleModalResult = (event: CustomEvent) => {
         this._isOpen = false;
         if (event.detail) {
-
+            this.elementController.publish("delete-all-transaction", 'transactions')
             return
         }
     }
