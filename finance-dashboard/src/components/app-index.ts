@@ -1,3 +1,4 @@
+import { initTransactionsManager } from '../bridge/transaction-managet.js';
 import { ElementController } from '@open-cells/element-controller';
 import { customElement } from 'lit/decorators.js';
 import { routes } from '../router/routes.js';
@@ -14,6 +15,11 @@ startApp({
 @customElement('app-index')
 export class AppIndex extends LitElement {
   elementController = new ElementController(this);
+
+  constructor(){
+    super()
+    initTransactionsManager(this)
+  }
 
   static styles = styles;
 
