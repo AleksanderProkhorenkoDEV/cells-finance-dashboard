@@ -21,7 +21,8 @@ export const styles = css`
     grid-template-areas: 
       "balance movements"
       "chart   actions";
-      grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     grid-gap: 1rem;
 
     padding:0.6rem;
