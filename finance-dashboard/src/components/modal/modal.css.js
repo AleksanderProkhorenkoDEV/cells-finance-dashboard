@@ -2,7 +2,6 @@ import { css } from "lit";
 
 export const styles = css`
     :host {
-        /* Ocupar toda la pantalla para el backdrop */
         position: fixed;
         top: 0;
         left: 0;
@@ -17,7 +16,6 @@ export const styles = css`
         background: rgba(0, 0, 0, 0.4);
         backdrop-filter: blur(4px);
         
-        /* Animación de entrada */
         opacity: 0;
         transition: opacity 0.3s ease, display 0.3s allow-discrete;
     }
@@ -27,7 +25,6 @@ export const styles = css`
         opacity: 1;
     }
 
-    /* Soporte para navegadores modernos con animaciones de entrada */
     @starting-style {
         :host([open]) {
             opacity: 0;
@@ -35,7 +32,6 @@ export const styles = css`
     }
 
     .modal {
-        /* Dimensiones más orgánicas que 50/50 */
         width: 90%;
         max-width: 450px;
         min-height: 200px;
@@ -52,7 +48,6 @@ export const styles = css`
         border-radius: 12px;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 
-        /* Animación de "subida" del contenido */
         transform: translateY(20px);
         transition: transform 0.3s ease;
     }
@@ -71,7 +66,6 @@ export const styles = css`
         padding-bottom: 0.75rem;
     }
 
-    /* El contenido crece para empujar las acciones al fondo */
     ::slotted([name="modal-content"]) {
         flex: 1;
         font-size: 1rem;
@@ -82,7 +76,7 @@ export const styles = css`
 
     .actions {
         display: flex;
-        justify-content: flex-end; /* Botones a la derecha es estándar de UI */
+        justify-content: flex-end; 
         gap: 0.75rem;
         margin-top: auto;
     }
