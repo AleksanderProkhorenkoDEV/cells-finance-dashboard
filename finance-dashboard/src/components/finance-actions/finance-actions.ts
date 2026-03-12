@@ -9,9 +9,23 @@ export class FinanceActions extends LitElement {
 
     static styles = styles;
 
+
     render() {
         return html`
-            <h1>Acciones rápidas</h1>
+            <h1 class="action__title">Acciones rápidas</h1>
+            <action-form></action-form>
+            <div class="action__button">
+                <wc-button-with-modal 
+                    .type=${"button"} 
+                    .variant=${"danger"} 
+                    .titleModal=${"¿Estas seguro?"}
+                >
+                   <span slot="button-text">Eliminar todos los movimientos</span>
+                    <div slot="modal-content">
+                        <p>Esta acción es permanente y no se puede deshacer.</p>
+                    </div>
+                </wc-button-with-modal>
+            </div>
         `
     }
 }
