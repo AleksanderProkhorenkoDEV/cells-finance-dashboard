@@ -28,7 +28,7 @@ export const styles = css`
 
     .action__button{
         display:flex;
-        justify-content:center;
+        justify-content:end;
 
         padding: 1rem;
 
