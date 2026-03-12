@@ -20,19 +20,8 @@
   --color-chart-grid: #334155;
 }
 
-
 html,
 body {
   height: 100%;
-
   margin: 0;
-
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-
-  color: var(--color-text-primary);
-
-  background-color: var(--color-bg-primary);
 }
