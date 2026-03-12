@@ -12,7 +12,7 @@ export class HomePage extends LitElement {
 
   render() {
     return html`
-      
+      <h1>Home page</h1>
     `;
   }
 }
