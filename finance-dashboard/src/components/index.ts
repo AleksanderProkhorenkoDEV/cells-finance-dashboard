@@ -1,6 +1,5 @@
 import "./finance-movements"
 import "./finanace-balance"
-import "./finance-actions"
 import "./finance-char"
 import "./navigation"
 import "./buttons"
