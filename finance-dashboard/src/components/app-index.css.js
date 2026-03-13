@@ -12,20 +12,15 @@ export const styles = css`
     flex: 1;
     position: relative;
     overflow: hidden;
-
-    border:1px solid red;
   }
 
   main ::slotted(*) {
-    width:100%;
-    height:100%;
-
     position: absolute;
+    top: 0;
     left: 0;
     right: 0;
+    bottom: 0;
     visibility: hidden;
-
-    border:1px solid yellow;
   }
 
   main ::slotted([state="active"]) {
