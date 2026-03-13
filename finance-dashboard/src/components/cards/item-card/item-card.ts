@@ -3,14 +3,15 @@ import { customElement, property } from "lit/decorators.js";
 import { classMap } from 'lit/directives/class-map.js';
 import { styles } from "./item-card.css.js";
 import { html, LitElement } from "lit";
+import { cleanDateString } from "../../../utils/date.js";
 
 @customElement('item-card')
 export class ItemCard extends LitElement {
 
     static styles = styles
 
-    @property({ type: Object })
-    transaction?: Transaction
+    @property({ attribute: false })
+    transaction!: Transaction
 
     render() {
         const classes = {
@@ -28,7 +29,7 @@ export class ItemCard extends LitElement {
                 </span>
             </div>
             <div class="card__footer">
-                <time>${this.transaction?.addedAt}</time>
+                <time>${cleanDateString(this.transaction?.addedAt)}</time>
                 <span class="card__type-badge">${this.transaction?.type}</span>
             </div>
         </div>

@@ -1,8 +1,12 @@
 import { css } from "lit";
 
 export const styles = css` 
+
+    :host{
+        width:70%;
+    }
     .card {
-        width:50%;
+        width:100%;
 
         padding: 16px;
         margin-bottom: 12px;
@@ -11,8 +15,9 @@ export const styles = css`
         border-radius: 12px;
         
         box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        background: var( --color-bg-primary);
+        background: var( --color-bg-secondary);
 
+        box-sizing:border-box;
         transition: transform 0.2s ease;
     }
 
@@ -46,7 +51,7 @@ export const styles = css`
         text-transform: uppercase;
         font-size: 0.7rem;
         letter-spacing: 0.5px;
-        background: var(--color-chart-grid);
+        background: var(--color-bg-secondary);
         padding: 2px 8px;
         border-radius: 4px;
     }
