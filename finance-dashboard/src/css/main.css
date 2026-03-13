@@ -1,4 +1,5 @@
 @import url("./movements.css");
+ @import url("./home.css");
 
 :root {
   --color-bg-primary: #0F172A;
@@ -35,3 +36,4 @@ body {
   color: var(--color-text-primary);
   background-color: var(--color-bg-primary);
 }
+
