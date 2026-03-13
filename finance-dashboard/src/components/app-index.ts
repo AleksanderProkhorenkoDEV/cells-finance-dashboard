@@ -26,8 +26,8 @@ export class AppIndex extends LitElement {
 
   render() {
     return html`
+      <wc-navigation></wc-navigation>
       <main role="main" tabindex="-1">
-        <wc-navigation></wc-navigation>
         <slot></slot>
       </main>
     `;
