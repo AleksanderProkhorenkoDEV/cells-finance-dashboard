@@ -14,4 +14,9 @@ export class TransactionServices {
         };
     }
 
+    static getAllTransaction = (): Transaction[] => {
+        const rawData = localStorage.getItem("transactions") || '[]';
+        return JSON.parse(rawData)
+    }
+
 }
