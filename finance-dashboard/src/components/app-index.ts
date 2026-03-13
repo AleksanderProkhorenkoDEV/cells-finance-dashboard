@@ -5,7 +5,7 @@ import { routes } from '../router/routes.js';
 import { startApp } from '@open-cells/core';
 import { styles } from './app-index.css.js';
 import { LitElement, html } from 'lit';
-import "./index.js"
+import "./index.ts"
 
 startApp({
   routes,
