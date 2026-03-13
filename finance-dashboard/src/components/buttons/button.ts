@@ -16,6 +16,9 @@ export class Button extends LitElement {
     @property({ type: String })
     variant: ButtonVariant = "primary"
 
+    @property({type: String})
+    customStyles: string = ""
+
     private _handleClick = () => {
 
         if (this.type === "submit") {
@@ -40,7 +43,7 @@ export class Button extends LitElement {
         return html`
             <button 
                 type=${this.type} 
-                class=${`button button__field button__field--${this.variant}`}
+                class=${`button button__field button__field--${this.variant} ${this.customStyles}`}
                 @click=${this._handleClick}
             >
                 <p><slot></slot></p>

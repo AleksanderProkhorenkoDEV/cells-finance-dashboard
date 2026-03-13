@@ -1,7 +1,7 @@
 import { css } from "lit";
 
 export const styles = css`
-      /* RESET */
+   /* RESET */
   .button {
     all: unset;
     box-sizing: border-box;
@@ -14,7 +14,6 @@ export const styles = css`
 
   /* BASE */
   .button__field {
-    width: 100%;
     padding: 0 1rem;
 
     border-radius: 6px;
@@ -89,4 +88,9 @@ export const styles = css`
     opacity: 0.6;
     cursor: not-allowed;
   }
+
+  .button--full-width{
+    width:100%
+  }
+
 `

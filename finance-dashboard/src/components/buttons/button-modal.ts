@@ -1,6 +1,6 @@
 import { ElementController } from "@open-cells/element-controller";
-import { ButtonType, ButtonVariant } from "../../types/ui.js";
 import { customElement, property, state } from "lit/decorators.js";
+import { ButtonType, ButtonVariant } from "../../types/ui.js";
 import { styles } from "./button.css.js";
 import { html, LitElement } from "lit";
 

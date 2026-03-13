@@ -1,3 +1,5 @@
+@import url("./movements.css");
+
 :root {
   --color-bg-primary: #0F172A;
   --color-bg-secondary: #1E293B;
@@ -20,11 +22,9 @@
   --color-chart-grid: #334155;
 }
 
-
 html,
 body {
   height: 100%;
-
   margin: 0;
 
   font-family: "Montserrat", sans-serif;
@@ -33,6 +33,5 @@ body {
   font-style: normal;
 
   color: var(--color-text-primary);
-
   background-color: var(--color-bg-primary);
 }

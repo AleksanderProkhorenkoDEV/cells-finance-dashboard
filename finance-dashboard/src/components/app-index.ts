@@ -16,28 +16,19 @@ startApp({
 export class AppIndex extends LitElement {
   elementController = new ElementController(this);
 
-  constructor(){
+  constructor() {
     super()
     initTransactionsManager(this)
   }
 
   static styles = styles;
 
+
   render() {
     return html`
+      <wc-navigation></wc-navigation>
       <main role="main" tabindex="-1">
-        <wc-card>
-          <finance-balance></finance-balance>
-        </wc-card>
-        <wc-card>
-          <finance-movements></finance-movements>
-        </wc-card>
-        <wc-card>
-          <finance-char></finance-char>
-        </wc-card>
-        <wc-card>
-          <finance-actions></finance-actions>
-        </wc-card>
+        <slot></slot>
       </main>
     `;
   }
