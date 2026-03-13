@@ -58,7 +58,7 @@ export class ActionForm extends LitElement {
                     @input=${this._handleChangeInput}
                 ></wc-input>
                 <wc-select .name=${"type"} .options=${ACTIONS} @change=${this._handleChangeInput}></wc-select>                   
-                <wc-button .type=${"submit"} .variant=${"primary"}>
+                <wc-button .type=${"submit"} .variant=${"primary"} .customStyles=${"button--full-width"}>
                     Guardar movimiento
                 </wc-button>
             </form>
