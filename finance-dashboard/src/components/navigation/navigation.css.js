@@ -25,6 +25,8 @@ export const styles = css`
     .nav__items{
         text-transform:uppercase;
         letter-spacing:2px;
+
+        cursor:pointer;
     }
 
     .nav__items--active{
