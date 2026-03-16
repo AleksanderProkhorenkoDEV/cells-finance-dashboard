@@ -2,9 +2,9 @@ import { ElementController } from "@open-cells/element-controller";
 import { TransactionServices } from "../../services/transaction";
 import { customElement, state } from "lit/decorators.js";
 import { ACTIONS } from "../../utils/contants";
+import { FormErrors } from "../../types/input";
 import { styles } from "./actions-form.css";
 import { html, LitElement } from "lit";
-import { FormErrors } from "../../types/input";
 
 @customElement("action-form")
 export class ActionForm extends LitElement {
@@ -34,7 +34,7 @@ export class ActionForm extends LitElement {
         const transaction = TransactionServices.createTransaction(this._values);
         this.elementController.publish('new-transaction', transaction);
 
-        this._values = { type: 'ingreso', title: '', amount: 0 };
+        this._values = { type: this._values.type, title: '', amount: 0 };
     }
 
     private _handleChangeInput = (event: Event) => {
