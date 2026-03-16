@@ -1,6 +1,3 @@
-import "./finance-movements"
-import "./finanace-balance"
-import "./finance-char"
 import "./navigation"
 import "./buttons"
 import "./inputs"
