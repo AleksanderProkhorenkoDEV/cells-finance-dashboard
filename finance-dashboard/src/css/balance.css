@@ -1,0 +1,87 @@
+.balance {
+    width: 80vw;
+
+    margin: 2rem auto;
+    padding: 1rem;
+    ;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    gap: 1rem;
+
+    box-sizing: border-box;
+}
+
+.balance__stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 1rem;
+
+    box-sizing: border-box;
+
+    border-radius: 6px;
+    background-color: var(--color-bg-card);
+}
+
+.balance__title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08rem;
+    margin-bottom: 0.35rem;
+    color: var(--text-color-secondary, #5a5a5a);
+}
+
+.balance__value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-color-primary, #111);
+    line-height: 1.1;
+}
+
+.balance__stat--income {
+    border: 1px solid var(--color-success);
+    box-shadow: 0 12px 30px rgba(52, 168, 89, 0.15);
+}
+
+.balance__stat--income .balance__title {
+    color: var(--color-profit);
+    font-size: 0.95rem;
+    letter-spacing: 0.04rem;
+    text-transform: uppercase;
+}
+
+.balance__stat--income .balance__value {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--color-profit);
+}
+
+.balance__stat--withdraw {
+    border: 1px solid var(--color-loss);
+    box-shadow: 0 12px 30px rgba(255, 107, 107, 0.15);
+}
+
+.balance__stat--withdraw .balance__title {
+    color: var(--color-loss);
+}
+
+.balance__stat--withdraw .balance__value {
+    color: var(--color-loss);
+}
+
+.balance__stat--available {
+    border: 1px solid #6c7ff0;
+    box-shadow: 0 12px 30px rgba(108, 127, 240, 0.15);
+}
+
+.balance__stat--available .balance__title {
+    color: var(--color-primary);
+}
+
+.balance__stat--available .balance__value {
+    color: var(--color-primary);
+}
