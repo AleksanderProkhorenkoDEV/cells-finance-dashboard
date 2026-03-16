@@ -13,6 +13,12 @@ export class Navigation extends LitElement {
     static styles = styles
 
 
+    constructor() {
+        super();
+        const pathName = window.location.hash.replace('#!', '').replace('/', '')
+        this._activePage = pathName
+    }
+
     _handleNavigationClick = (e: Event) => {
         const li = e.target as HTMLElement
 
@@ -28,8 +34,8 @@ export class Navigation extends LitElement {
             <nav class="nav">
                 <ul class="nav__host">
                     ${menuItems.map(item => {
-                        const isSelected = this._activePage === item.toLowerCase();
-                        return html`
+            const isSelected = this._activePage === item.toLowerCase();
+            return html`
                             <li 
                                 class="nav__items ${isSelected ? 'nav__items--active' : ''}" 
                                 @click=${this._handleNavigationClick}
@@ -38,7 +44,7 @@ export class Navigation extends LitElement {
                                 ${item}
                             </li>
                         `;
-                    })}
+        })}
                 </ul>
             </nav>
         `;
