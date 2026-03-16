@@ -19,4 +19,10 @@ export class TransactionServices {
         return JSON.parse(rawData)
     }
 
+    static getAllIconme = (filter: "ingreso" | "retirada") => {
+        return this.getAllTransaction()
+            .filter(item => item.type == filter)
+            .reduce((sum, item) => sum + item.amount, 0);
+    }
+
 }
