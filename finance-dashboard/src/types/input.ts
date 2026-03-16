@@ -1,4 +1,14 @@
 export interface SelectOptions {
-    label: string, 
+    label: string,
     value: string
+}
+
+interface ValidationError {
+    message: string;
+}
+
+export interface FormErrors {
+    title: ValidationError;
+    amount: ValidationError;
+    type: ValidationError;
 }
