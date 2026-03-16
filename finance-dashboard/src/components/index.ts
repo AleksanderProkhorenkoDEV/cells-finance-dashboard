@@ -1,6 +1,7 @@
 import "./navigation"
 import "./buttons"
 import "./inputs"
+import "./charts"
 import "./modal"
 import "./cards"
 import "./form"
