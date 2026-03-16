@@ -1,1 +1,0 @@
-import "./finance-movements.ts"
