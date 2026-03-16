@@ -26,6 +26,7 @@ export class BalancePage extends LitElement {
 
         this._income = this._onTransactionsUpdated("ingreso")
         this._widthdraw = this._onTransactionsUpdated("retirada")
+
         this.elementController.subscribe("transactions-list-updated", () => {
             this._income = this._onTransactionsUpdated("ingreso")
             this._widthdraw = this._onTransactionsUpdated("retirada")
@@ -41,7 +42,7 @@ export class BalancePage extends LitElement {
     }
 
     private _onTransactionsUpdated = (filter: TransactionType) => {
-        return TransactionServices.getAllIconme(filter);
+        return TransactionServices.getCurrentMonthMoney(filter);
     }
 
     render() {
@@ -60,6 +61,14 @@ export class BalancePage extends LitElement {
                     <h2 class="balance__title">Saldo disponible</h2>
                     <p class="balance__value">${balance} €</p>
                 </article>
+            </section>
+            <section>
+                <section>
+                    <h4>Filtros</h4>
+                </section>
+                <section class="balance">
+                    <income-chart></income-chart>
+                </section>
             </section>
         `
     }
