@@ -28,25 +28,30 @@ export class Navigation extends LitElement {
     }
 
     render() {
-        const menuItems = ['home', 'balance', 'movements', 'summary'];
+        const menuItems = [
+            { route: 'home', label: 'Inicio' },
+            { route: 'balance', label: 'Balance' },
+            { route: 'movements', label: 'Movimientos' }
+        ];
 
         return html`
-            <nav class="nav">
-                <ul class="nav__host">
-                    ${menuItems.map(item => {
-            const isSelected = this._activePage === item.toLowerCase();
+    <nav class="nav">
+      <ul class="nav__host">
+        ${menuItems.map(item => {
+            const isSelected = this._activePage === item.route;
+
             return html`
-                            <li 
-                                class="nav__items ${isSelected ? 'nav__items--active' : ''}" 
-                                @click=${this._handleNavigationClick}
-                                data-route=${item}
-                            >
-                                ${item}
-                            </li>
-                        `;
+            <li
+              class="nav__items ${isSelected ? 'nav__items--active' : ''}"
+              @click=${this._handleNavigationClick}
+              data-route=${item.route}
+            >
+              ${item.label}
+            </li>
+          `;
         })}
-                </ul>
-            </nav>
-        `;
+      </ul>
+    </nav>
+  `;
     }
 }

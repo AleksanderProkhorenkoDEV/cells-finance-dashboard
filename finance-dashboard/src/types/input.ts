@@ -11,4 +11,5 @@ export interface FormErrors {
     title: ValidationError;
     amount: ValidationError;
     type: ValidationError;
+    category: ValidationError
 }

@@ -1,7 +1,8 @@
 import { ElementController } from "@open-cells/element-controller";
 import { TransactionServices } from "../../services/transaction";
+import { CreateTransactionDTO } from "../../types/transactions";
+import { ACTIONS, CATEGORIES } from "../../utils/contants";
 import { customElement, state } from "lit/decorators.js";
-import { ACTIONS } from "../../utils/contants";
 import { FormErrors } from "../../types/input";
 import { styles } from "./actions-form.css";
 import { html, LitElement } from "lit";
@@ -14,7 +15,7 @@ export class ActionForm extends LitElement {
     private _debounceTimer?: number;
 
     @state()
-    private _values: Record<string, any> = { type: 'ingreso', title: '', amount: 0 };
+    private _values: CreateTransactionDTO = { type: 'ingreso', title: '', amount: "0", category: "salario" };
 
     @state()
     private _validationErrors?: FormErrors
@@ -34,13 +35,17 @@ export class ActionForm extends LitElement {
         const transaction = TransactionServices.createTransaction(this._values);
         this.elementController.publish('new-transaction', transaction);
 
-        this._values = { type: this._values.type, title: '', amount: 0 };
+        this._values = { type: this._values.type, title: '', amount: "0", category: "comida" };
     }
 
     private _handleChangeInput = (event: Event) => {
         const input = event.target as HTMLInputElement
         const name = input.name;
-        const value = input.value;
+        let value: string | number = input.value;
+
+        if (name === "amount") {
+            value = input.value === "" ? 0 : Number(input.value);
+        }
 
         clearTimeout(this._debounceTimer);
 
@@ -49,7 +54,7 @@ export class ActionForm extends LitElement {
         }, 300);
     }
 
-    _validateFields = (values: Record<"title" | "amount" | "type", string>): Boolean => {
+    _validateFields = (values: Record<"title" | "amount" | "type" | "category", string>): Boolean => {
 
         const result: FormErrors = {
             title: {
@@ -60,7 +65,8 @@ export class ActionForm extends LitElement {
             },
             type: {
                 message: ""
-            }
+            },
+            category: { message: "" }
         }
 
         if (Number(values.amount) <= 0) {
@@ -74,6 +80,10 @@ export class ActionForm extends LitElement {
         const validTypes = ['ingreso', 'retirada'];
         if (!validTypes.includes(values.type.toLowerCase())) {
             result.type.message = "El tipo debe ser ingreso o retirada";
+        }
+
+        if (!values.category || values.category.trim() === "") {
+            result.category = { message: "Selecciona una categoría" };
         }
 
         const isValid = Object.values(result).every(field => field.message === "");
@@ -92,9 +102,9 @@ export class ActionForm extends LitElement {
                         @input=${this._handleChangeInput}
                     ></wc-input>
                     ${this._validationErrors?.title.message
-                        ? html`<span class="error-text">${this._validationErrors.title.message}</span>`
-                        : ''
-                    }
+                ? html`<span class="error-text">${this._validationErrors.title.message}</span>`
+                : ''
+            }
                 </div>
                 <div class="field-container">
                     <wc-input
@@ -104,16 +114,28 @@ export class ActionForm extends LitElement {
                         @input=${this._handleChangeInput}
                     ></wc-input>
                     ${this._validationErrors?.amount.message
-                        ? html`<span class="error-text">${this._validationErrors.amount.message}</span>`
-                        : ''
-                    }
+                ? html`<span class="error-text">${this._validationErrors.amount.message}</span>`
+                : ''
+            }
                 </div>
                 <div class="field-container">
                     <wc-select .name=${"type"} .options=${ACTIONS} @change=${this._handleChangeInput}></wc-select>
-                    ${this._validationErrors?.type.message 
-                        ? html`<span class="error-text">${this._validationErrors.type.message}</span>` 
-                        : ''
-                    }
+                    ${this._validationErrors?.type.message
+                ? html`<span class="error-text">${this._validationErrors.type.message}</span>`
+                : ''
+            }
+                </div>
+                <div class="field-container">
+                    <wc-select
+                        .name=${"category"}
+                        .options=${CATEGORIES}
+                        .value=${this._values.category}
+                        @change=${this._handleChangeInput}
+                    ></wc-select>
+
+                    ${this._validationErrors?.category?.message
+                        ? html`<span class="error-text">${this._validationErrors.category.message}</span>`
+                        : ""}
                 </div>                   
                 <wc-button .type=${"submit"} .variant=${"primary"} .customStyles=${"button--full-width"}>
                     Guardar movimiento

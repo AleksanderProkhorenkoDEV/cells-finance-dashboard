@@ -2,47 +2,97 @@ import { css } from "lit";
 
 export const styles = css`
 
-    :host{
-        width:85%;
-        height:100%;
+:host {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 
-        display:flex;
-        align-items:center;
-        justify-content:center;
+/* ===============================
+   FORM BASE
+=============================== */
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+
+    width: 100%;
+    max-width: 420px; 
+}
+
+/* ===============================
+   FIELD CONTAINER
+=============================== */
+
+.field-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* ===============================
+   ERROR TEXT
+=============================== */
+
+.error-text {
+    position: relative;
+    padding-left: 0.6rem;
+
+    font-size: 0.8rem;
+    color: oklch(65.57% 0.1744 23.19);
+}
+
+.error-text::before {
+    content: "*";
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* ===============================
+   TABLET
+=============================== */
+
+@media (max-width: 1024px) {
+
+    .form {
+        max-width: 100%;
     }
 
-    .form{
-        display:flex;
-        flex-direction:column;
-        gap:1rem;
+}
 
-        width:65%;
-        height: 80%;
+/* ===============================
+   MOBILE
+=============================== */
+
+@media (max-width: 768px) {
+
+    :host {
+        width: 100%;
     }
 
-    .field-container{
-        display:flex;
-        flex-direction:column;
-        gap:1rem;
+    .form {
+        width: 100%;
+        max-width: 100%;
+        gap: 1rem;
     }
 
-    .error-text{
-        width:100%;
+}
 
-        position:relative;
+/* ===============================
+   MOBILE PEQUEÑO
+=============================== */
 
-        padding-left:0.4rem;
+@media (max-width: 480px) {
 
-        color:oklch(65.57% 0.1744 23.19);
-
-        box-sizing:border-box;
+    .form {
+        gap: 0.9rem;
     }
 
-    .error-text::before{
-        content: "*";
-
-        position:absolute;
-        left:0;
-        top:0;
+    .error-text {
+        font-size: 0.75rem;
     }
-`
+
+}
+`;

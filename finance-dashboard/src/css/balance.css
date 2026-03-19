@@ -85,3 +85,143 @@
 .balance__stat--available .balance__value {
     color: var(--color-primary);
 }
+
+.balance-metrics {
+    width: 80vw;
+
+    margin: 0 auto 2rem auto;
+
+    display: flex;
+    gap: 1.5rem;
+}
+
+.balance-metrics__card {
+    flex: 1;
+
+    padding: 1.2rem;
+
+    text-align: center;
+
+    border-radius: 10px;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+}
+
+.balance-metrics__title {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.balance-metrics__value {
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.balance-metrics__value--expense {
+    color: var(--color-danger);
+}
+
+.balance-metrics__value--saving {
+    color: var(--color-success);
+}
+
+
+.balance-charts {
+    width: 80vw;
+    height: auto;
+
+    margin: 0 auto 2rem auto;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.balance-charts__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 1.5rem;
+    border-radius: 12px;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+}
+
+/* ===================================
+   TABLET
+=================================== */
+
+@media (max-width: 1024px) {
+
+    .balance,
+    .balance-metrics,
+    .balance-charts {
+        width: 90vw;
+    }
+
+    .balance {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+    }
+
+    .balance__stat--available {
+        grid-column: span 2;
+    }
+
+    .balance-metrics {
+        gap: 1rem;
+    }
+}
+
+
+/* ===================================
+   MOBILE
+=================================== */
+
+@media (max-width: 640px) {
+
+    .balance,
+    .balance-metrics,
+    .balance-charts {
+        width: 95vw;
+    }
+
+    /* Stats en columna */
+    .balance {
+        grid-template-columns: 1fr;
+    }
+
+    .balance__stat--available {
+        grid-column: span 1;
+    }
+
+    .balance__value {
+        font-size: 1.7rem;
+    }
+
+    .balance__stat--income .balance__value {
+        font-size: 1.9rem;
+    }
+
+    /* Métricas en columna */
+    .balance-metrics {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .balance-metrics__card {
+        padding: 1rem;
+    }
+
+    /* Charts en columna */
+    .balance-charts {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .balance-charts__item {
+        padding: 1rem;
+    }
+}

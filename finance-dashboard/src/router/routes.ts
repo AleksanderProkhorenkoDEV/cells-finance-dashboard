@@ -18,14 +18,6 @@ export const routes: RouteDefinition[] = [
     },
   },
   {
-    path: '/summary',
-    name: 'summary',
-    component: 'summary-page',
-    action: async () => {
-      await import('../pages/summary/summary-page.js');
-    },
-  },
-  {
     path: '/movements',
     name: 'movements',
     component: 'movements-page',
