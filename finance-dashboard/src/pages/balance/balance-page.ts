@@ -46,7 +46,11 @@ export class BalancePage extends LitElement {
     }
 
     render() {
-        const balance = this._income - this._widthdraw
+        const balance = this._income - this._widthdraw;
+        const total = this._income || 1;
+
+        const expensePercent = ((this._widthdraw / total) * 100).toFixed(1);
+        const savingPercent = ((balance / total) * 100).toFixed(1);
         return html`
             <section class="balance">
                 <article class="balance__stat balance__stat--income">
@@ -62,12 +66,30 @@ export class BalancePage extends LitElement {
                     <p class="balance__value">${balance} €</p>
                 </article>
             </section>
-            <section>
-                <section>
-                    <h4>Filtros</h4>
+            <section class="balance-metrics">
+                <article class="balance-metrics__card">
+                    <h3 class="balance-metrics__title">% Gastado</h3>
+                    <p class="balance-metrics__value balance-metrics__value--expense">
+                    ${expensePercent}%
+                    </p>
+                </article>
+
+                <article class="balance-metrics__card">
+                    <h3 class="balance-metrics__title">% Ahorro</h3>
+                    <p class="balance-metrics__value balance-metrics__value--saving">
+                    ${savingPercent}%
+                    </p>
+                </article>
                 </section>
-                <section class="balance">
-                    <income-chart></income-chart>
+
+                <section class="balance-charts">
+                    <article class="balance-charts__item">
+                        <income-chart></income-chart>
+                    </article>
+
+                    <article class="balance-charts__item">
+                        <category-chart></category-chart>
+                    </article>
                 </section>
             </section>
         `
