@@ -1,43 +1,61 @@
 .home {
-    max-width: 70%;
+    width: 100%;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 2rem 1.5rem;
+    padding: clamp(1rem, 4vw, 2.5rem);
     color: var(--text-color-primary);
+    box-sizing: border-box;
 }
+
+/* =========================
+   HEADER
+========================= */
 
 .home__header {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: clamp(1.5rem, 4vw, 3rem);
 }
 
 .home__title {
-    font-size: 2rem;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
     margin-bottom: 0.75rem;
+    line-height: 1.2;
 }
 
 .home__subtitle {
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
     color: var(--text-color-secondary, #666);
+    max-width: 700px;
+    margin: 0 auto;
 }
+
+/* =========================
+   CONTENT BLOCKS
+========================= */
 
 .home__content,
 .home__tech {
     background: var(--color-bg-primary);
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    margin-bottom: 1.5rem;
+    padding: clamp(1.2rem, 3vw, 2rem);
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
 }
 
 .home__content p,
 .home__tech p {
-    line-height: 1.6;
+    line-height: 1.7;
     margin-bottom: 1rem;
+    font-size: clamp(0.95rem, 1.8vw, 1.05rem);
 }
+
+/* =========================
+   TECH SECTION
+========================= */
 
 .home__tech h2 {
     margin-bottom: 1rem;
-    font-size: 1.3rem;
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
 }
 
 .home__tech ul {
@@ -48,8 +66,9 @@
 
 .home__tech li {
     position: relative;
-    padding-left: 1.2rem;
-    margin-bottom: 0.5rem;
+    padding-left: 1.4rem;
+    margin-bottom: 0.6rem;
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
 }
 
 .home__tech li::before {
@@ -60,12 +79,25 @@
     font-weight: bold;
 }
 
-@media (max-width: 768px) {
-    .home {
-        padding: 1.5rem 1rem;
-    }
+/* =========================
+   TABLET
+========================= */
 
-    .home__title {
-        font-size: 1.6rem;
+@media (min-width: 768px) {
+
+    .home__content,
+    .home__tech {
+        padding: 2rem;
+    }
+}
+
+/* =========================
+   DESKTOP GRANDE
+========================= */
+
+@media (min-width: 1200px) {
+    .home {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
     }
 }
