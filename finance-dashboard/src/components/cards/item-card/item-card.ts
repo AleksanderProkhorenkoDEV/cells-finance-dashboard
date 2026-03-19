@@ -16,21 +16,26 @@ export class ItemCard extends LitElement {
     render() {
         const classes = {
             'card': true,
-            'card--income': this.transaction?.type === 'ingreso', 
+            'card--income': this.transaction?.type === 'ingreso',
             'card--expense': this.transaction?.type === 'retirada'
         };
+        console.log(this.transaction);
 
         return html`
-        <div class="${classMap(classes)}">
-            <div class="card__data">
-                <span class="card__title">${this.transaction?.title}</span>
-                <span class="card__amount">
-                    ${this.transaction?.type === 'retirada' ? '-' : '+'}${this.transaction?.amount} €
-                </span>
-            </div>
-            <div class="card__footer">
-                <time>${cleanDateString(this.transaction?.addedAt)}</time>
-                <span class="card__type-badge">${this.transaction?.type}</span>
+            <div class="${classMap(classes)}">
+                <div class="card__data">
+                    <span class="card__title">${this.transaction?.title}</span>
+                    <span class="card__amount">
+                        ${this.transaction?.type === 'retirada' ? '-' : '+'}${this.transaction?.amount} €
+                    </span>
+                </div>
+                <div class="card__footer">
+                    <time>${cleanDateString(this.transaction?.addedAt)}</time>
+                    <div class="card__badges">
+                    <span class="card__badge card__badge--category">
+                        ${this.transaction?.category}
+                    </span>
+                </div>
             </div>
         </div>
         `
