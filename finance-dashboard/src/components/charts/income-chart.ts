@@ -8,15 +8,21 @@ export class IncomeChart extends LitElement {
 
     private _chart?: Chart;
     private _canvas?: HTMLCanvasElement;
-    
-    @state()
-    private _income: number = TransactionServices.getCurrentMonthMoney("ingreso")
 
     @state()
-    private _widthdraw: number = TransactionServices.getCurrentMonthMoney("retirada")
+    private _income: number = 0;
+
+    @state()
+    private _widthdraw: number = 0;
 
     protected createRenderRoot(): HTMLElement | DocumentFragment {
         return this;
+    }
+
+    connectedCallback() {
+        super.connectedCallback();
+        this._income = TransactionServices.getCurrentMonthMoney("ingreso");
+        this._widthdraw = TransactionServices.getCurrentMonthMoney("retirada");
     }
 
     firstUpdated() {
@@ -26,25 +32,16 @@ export class IncomeChart extends LitElement {
             type: 'bar',
             data: {
                 labels: ["Ingresos", "Gastos"],
-                datasets: [
-                    {
-                        label: "Resumen",
-                        data: [this._income, this._widthdraw],
-                        backgroundColor: [
-                            "#22C55E",
-                            "#EF4444",
-                        ],
-                        borderRadius: 8,
-                    },
-                ],
+                datasets: [{
+                    label: "Resumen",
+                    data: [this._income, this._widthdraw],
+                    backgroundColor: ["#22C55E", "#EF4444"],
+                    borderRadius: 8,
+                }],
             },
             options: {
                 responsive: true,
-                plugins: {
-                    legend: {
-                        display: false,
-                    },
-                },
+                plugins: { legend: { display: false } },
             },
         };
 

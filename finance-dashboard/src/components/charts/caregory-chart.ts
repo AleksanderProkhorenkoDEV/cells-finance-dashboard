@@ -10,34 +10,50 @@ export class ExpenseCategoryChart extends LitElement {
   private _canvas?: HTMLCanvasElement;
 
   @state()
-  private _data =
-    TransactionServices.getCurrentMonthExpensesGroupedByCategory();
+  private _data: Record<string, number> = {};
 
   protected createRenderRoot(): HTMLElement | DocumentFragment {
     return this;
   }
 
+  connectedCallback() {
+    super.connectedCallback();
+    this._loadData();
+    this.addEventListener("transactions-updated", this._onUpdate);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this._chart?.destroy();
+    this.removeEventListener("transactions-updated", this._onUpdate);
+  }
+
+  private _onUpdate = () => {
+    this._data = TransactionServices.getCurrentMonthExpensesGroupedByCategory();
+  }
+
+  private _loadData() {
+    this._data = TransactionServices.getCurrentMonthExpensesGroupedByCategory();
+  }
+
   firstUpdated() {
     this._canvas = this.querySelector("#categoryChart") as HTMLCanvasElement;
-
-    const labels = Object.keys(this._data);
-    const values = Object.values(this._data);
 
     const config: ChartConfiguration = {
       type: "pie",
       data: {
-        labels,
+        labels: Object.keys(this._data),
         datasets: [
           {
-            data: values,
+            data: Object.values(this._data),
             backgroundColor: [
-              "#6366F1", // Indigo
-              "#F59E0B", // Amber
-              "#10B981", // Emerald
-              "#3B82F6", // Blue
-              "#EF4444", // Red
-              "#8B5CF6", // Violet
-              "#14B8A6", // Teal
+              "#6366F1",
+              "#F59E0B",
+              "#10B981",
+              "#3B82F6",
+              "#EF4444",
+              "#8B5CF6",
+              "#14B8A6",
             ],
             borderWidth: 0,
           },
@@ -58,23 +74,13 @@ export class ExpenseCategoryChart extends LitElement {
 
   updated() {
     if (this._chart) {
-      const labels = Object.keys(this._data);
-      const values = Object.values(this._data);
-
-      this._chart.data.labels = labels;
-      this._chart.data.datasets[0].data = values;
+      this._chart.data.labels = Object.keys(this._data);
+      this._chart.data.datasets[0].data = Object.values(this._data);
       this._chart.update();
     }
   }
 
-  disconnectedCallback() {
-    super.disconnectedCallback();
-    this._chart?.destroy();
-  }
-
   render() {
-    console.log(this._data);
-    
     return html`
       <article class="chart__container">
         <canvas id="categoryChart"></canvas>

@@ -40,10 +40,20 @@ export class TransactionServices {
     }
 
     static getCurrentMonthMoney = (type: TransactionType) => {
-        const now = new Date()
-        const endDate = new Date(now.getFullYear(), now.getMonth() - 1, now.getDate())
+        const now = new Date();
+        const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+        const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59);
 
-        return this.getAllmoney(type, now, endDate)
+        return this.getAllTransaction()
+            .filter(item => {
+                const date = new Date(item.addedAt);
+                return (
+                    item.type === type &&
+                    date >= startOfMonth &&
+                    date <= endOfMonth
+                );
+            })
+            .reduce((sum, item) => sum + item.amount, 0);
     }
 
     static getCurrentMonthExpensesGroupedByCategory(): Record<string, number> {
