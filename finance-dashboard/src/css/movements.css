@@ -4,10 +4,12 @@
 
 .movements {
     width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 2rem;
-    padding: 2rem;
+    padding: clamp(1rem, 4vw, 2.5rem);
     box-sizing: border-box;
 }
 
@@ -32,18 +34,14 @@
     gap: 1.5rem;
 }
 
-/* Formulario */
 .action__form {
     width: 100%;
 }
 
-/* Botón */
 .action__button {
-
     margin-top: 2rem;
     display: flex;
     justify-content: flex-end;
-    /* 🔥 pegado a la derecha */
 }
 
 /* ==============================
@@ -54,7 +52,6 @@
 
     .movements {
         grid-template-columns: 1.5fr 1fr;
-        padding: 1.5rem;
     }
 
 }
@@ -68,21 +65,17 @@
     .movements {
         grid-template-columns: 1fr;
         gap: 2rem;
-        padding: 1rem;
     }
 
-    /* Primero acciones */
     .movements__action {
         width: 100%;
         order: 1;
     }
 
-    /* Luego lista */
     .movements__list {
         order: 2;
     }
 
-    /* Botón full width en móvil */
     .action__button {
         justify-content: stretch;
     }
@@ -99,7 +92,6 @@
 @media (max-width: 480px) {
 
     .movements {
-        padding: 0.75rem;
         gap: 1.5rem;
     }
 
