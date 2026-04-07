@@ -2,9 +2,11 @@ import { TransactionServices } from "../../services/transaction";
 import { Chart, ChartConfiguration } from "chart.js/auto";
 import { customElement, state } from "lit/decorators.js";
 import { html, LitElement } from "lit";
+import { ElementController } from "@open-cells/element-controller";
 
 @customElement("income-chart")
 export class IncomeChart extends LitElement {
+    elementController = new ElementController(this);
 
     private _chart?: Chart;
     private _canvas?: HTMLCanvasElement;
@@ -21,12 +23,19 @@ export class IncomeChart extends LitElement {
 
     connectedCallback() {
         super.connectedCallback();
+        this._loadData(); 
+        this.elementController.subscribe("transactions-list-updated", () => {
+            this._loadData();
+        });
+    }
+
+    private _loadData() {  // ← método definido
         this._income = TransactionServices.getCurrentMonthMoney("ingreso");
         this._widthdraw = TransactionServices.getCurrentMonthMoney("retirada");
     }
 
     async firstUpdated() {
-        await this.updateComplete; 
+        await this.updateComplete;
 
         this._canvas = this.querySelector("#balanceChart") as HTMLCanvasElement;
 
@@ -63,6 +72,7 @@ export class IncomeChart extends LitElement {
     disconnectedCallback() {
         super.disconnectedCallback();
         this._chart?.destroy();
+        this.elementController.unsubscribe("transactions-list-updated");
     }
 
     render() {

@@ -2,9 +2,11 @@ import { TransactionServices } from "../../services/transaction";
 import { Chart, ChartConfiguration } from "chart.js/auto";
 import { customElement, state } from "lit/decorators.js";
 import { html, LitElement } from "lit";
+import { ElementController } from "@open-cells/element-controller";
 
 @customElement("category-chart")
 export class ExpenseCategoryChart extends LitElement {
+  elementController = new ElementController(this);
 
   private _chart?: Chart;
   private _canvas?: HTMLCanvasElement;
@@ -19,17 +21,15 @@ export class ExpenseCategoryChart extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     this._loadData();
-    this.addEventListener("transactions-updated", this._onUpdate);
+    this.elementController.subscribe("transactions-list-updated", () => {
+      this._loadData();
+    });
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
     this._chart?.destroy();
-    this.removeEventListener("transactions-updated", this._onUpdate);
-  }
-
-  private _onUpdate = () => {
-    this._data = TransactionServices.getCurrentMonthExpensesGroupedByCategory();
+    this.elementController.unsubscribe("transactions-list-updated");
   }
 
   private _loadData() {
@@ -37,7 +37,7 @@ export class ExpenseCategoryChart extends LitElement {
   }
 
   async firstUpdated() {
-    await this.updateComplete; 
+    await this.updateComplete;
     this._canvas = this.querySelector("#categoryChart") as HTMLCanvasElement;
 
     const config: ChartConfiguration = {
