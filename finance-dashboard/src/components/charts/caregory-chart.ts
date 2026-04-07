@@ -36,7 +36,8 @@ export class ExpenseCategoryChart extends LitElement {
     this._data = TransactionServices.getCurrentMonthExpensesGroupedByCategory();
   }
 
-  firstUpdated() {
+  async firstUpdated() {
+    await this.updateComplete; 
     this._canvas = this.querySelector("#categoryChart") as HTMLCanvasElement;
 
     const config: ChartConfiguration = {

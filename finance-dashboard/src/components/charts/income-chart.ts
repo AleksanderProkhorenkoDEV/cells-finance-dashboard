@@ -25,7 +25,9 @@ export class IncomeChart extends LitElement {
         this._widthdraw = TransactionServices.getCurrentMonthMoney("retirada");
     }
 
-    firstUpdated() {
+    async firstUpdated() {
+        await this.updateComplete; 
+
         this._canvas = this.querySelector("#balanceChart") as HTMLCanvasElement;
 
         const config: ChartConfiguration = {
