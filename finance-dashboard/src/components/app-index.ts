@@ -5,7 +5,11 @@ import { routes } from '../router/routes.js';
 import { startApp } from '@open-cells/core';
 import { styles } from './app-index.css.js';
 import { LitElement, html } from 'lit';
+import { inject } from '@vercel/analytics';
 import "./index.ts"
+
+// Initialize Vercel Web Analytics
+inject();
 
 startApp({
   routes,
